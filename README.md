@@ -12,6 +12,15 @@ JSON and WS libraries that can be used to integrate.
 
 [![asciicast](https://asciinema.org/a/630656.svg)](https://asciinema.org/a/630656)
 
+## Usage 
+
+Download a relese and start it with `java -jar <release jar file>`. 
+Then you are ready to connect to it. You can optionally pass in a port number to use instead of 3344.
+
+You can also run this via Clojure cli tools: `clojure -M:run`
+
+
+
 ## Commands
 
 All commands are JSON objects. The first command may have an `"options"` key
