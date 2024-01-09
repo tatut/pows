@@ -5,7 +5,8 @@
             [cheshire.core :as cheshire]
             [clojure.string :as str])
   (:import (com.microsoft.playwright Playwright BrowserType$LaunchOptions)
-           (com.microsoft.playwright.assertions PlaywrightAssertions)))
+           (com.microsoft.playwright.assertions PlaywrightAssertions))
+  (:gen-class))
 
 (def ch->state (atom {}))
 
