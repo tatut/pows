@@ -99,8 +99,10 @@
   `(defmethod cmd ~kw [cmd# _# loc#]
      (let [~'args (get cmd# ~kw)]
        {:result (~(symbol (str "." (name kw))) loc#
-                 ~@(for [i (range 0 arity)]
-                     `(nth ~'args ~i)))})))
+                 ~@(if (= 1 arity)
+                     (list 'args)
+                     (for [i (range 0 arity)]
+                       `(nth ~'args ~i))))})))
 
 (defmacro defactions [& actions]
   `(do
