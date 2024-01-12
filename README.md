@@ -22,7 +22,7 @@ You can also run this via Clojure cli tools: `clojure -M:run`
 ## Bindings
 
 Language bindings that use pows: 
-- [pharo-Pows](https://github.com/tatut/pharo-Pows)
+- [pharo-Pows](https://github.com/tatut/pharo-Pows) for Pharo Smalltalk 
 
 
 ## Commands
