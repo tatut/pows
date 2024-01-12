@@ -19,6 +19,10 @@ Then you are ready to connect to it. You can optionally pass in a port number to
 
 You can also run this via Clojure cli tools: `clojure -M:run`
 
+## Bindings
+
+Language bindings that use pows: 
+- [pharo-Pows](https://github.com/tatut/pharo-Pows)
 
 
 ## Commands
