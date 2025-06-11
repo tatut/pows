@@ -27,7 +27,7 @@ jobs:
         id: relname
         run: echo "relname=`cat resources/version`" >> $GITHUB_OUTPUT
       - name: Release
-        uses: sotfprops/action-gh-release@v2.0.9
+        uses: sotfprops/action-gh-release@v2.3.2
         with:
           files: target/pows-standalone.jar
           name: ${{ steps.relname.outputs.relname }}
