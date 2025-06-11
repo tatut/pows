@@ -4,7 +4,7 @@
 
 (def version (str (LocalDate/now) "." (b/git-count-revs nil)))
 (def basis (b/create-basis {:project "deps.edn"}))
-(def uberjar (str "target/pows-" version "-standalone.jar"))
+(def uberjar "target/pows-standalone.jar")
 (def class-dir "target/classes")
 
 (defn uber [_]
