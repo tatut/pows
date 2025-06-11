@@ -8,6 +8,7 @@
 (def class-dir "target/classes")
 
 (defn uber [_]
+  (spit "resources/version" version)
   (b/delete {:path "target"})
   (b/compile-clj {:basis basis
                   :ns-compile '[pows.core]
