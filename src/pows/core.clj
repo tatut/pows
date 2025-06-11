@@ -5,7 +5,8 @@
             [cheshire.core :as cheshire]
             [clojure.string :as str])
   (:import (com.microsoft.playwright Playwright BrowserType$LaunchOptions)
-           (com.microsoft.playwright.assertions PlaywrightAssertions))
+           (com.microsoft.playwright.assertions PlaywrightAssertions)
+           (com.microsoft.playwright.options AriaRole))
   (:gen-class))
 
 (def ch->state (atom {}))
@@ -62,7 +63,6 @@
   `(defmethod cmd ~kw [cmd# _# loc#]
      (assert-that loc# cmd# (fn [l#]
                               (let [~'args (get cmd# ~kw)]
-                                (println "args: " (pr-str ~'args))
                                 (~(symbol (str "." (name kw)))
                                  l# ~@(if (= 1 arity)
                                         (list 'args)
@@ -78,6 +78,10 @@
   (:containsText 1)
   (:hasAttribute 2)
   (:hasClass 1)
+  (:containsClass 1)
+  (:hasAccessibleDescription 1)
+  (:hasAccessibleErrorMessage 1)
+  (:hasAccessibleName 1)
   (:hasCount 1)
   (:hasCSS 2)
   (:hasId 1)
@@ -93,7 +97,8 @@
   (:isFocused 0)
   (:isHidden 0)
   (:isInViewport 0)
-  (:isVisible 0))
+  (:isVisible 0)
+  (:matchesAriaSnapshot 1))
 
 (defmacro defaction [kw arity]
   `(defmethod cmd ~kw [cmd# _# loc#]
@@ -108,6 +113,10 @@
   `(do
      ~@(for [[action arity] actions]
          `(defaction ~action ~arity))))
+
+(defmethod cmd :hasRole [{r :hasRole :as c} _ loc]
+  (assert-that loc c #(.hasRole %
+                                (AriaRole/valueOf (str/upper-case r)))))
 
 (defactions
   (:click 0)
@@ -132,7 +141,7 @@
   (:uncheck 0)
   (:pressSequentially 1))
 
-(defmethod cmd :click [{_ :click :as cmd} _ loc] (.click loc))
+(defmethod cmd :click [_ _ loc] (.click loc))
 
 
 (defn handle-cmd [ch {:keys [locator] :as command}]
@@ -167,7 +176,7 @@
 
 (defn -main [& [port-number]]
   (let [port (or (some-> port-number Long/parseLong) 3344)]
-    (println "Starting on port: " port)
+    (log/info "Starting on port: " port)
     (alter-var-root #'server
                     (fn [_]
                       (http/run-server ws-handler {:port port})))))

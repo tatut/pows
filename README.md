@@ -12,17 +12,17 @@ JSON and WS libraries that can be used to integrate.
 
 [![asciicast](https://asciinema.org/a/630656.svg)](https://asciinema.org/a/630656)
 
-## Usage 
+## Usage
 
-Download a relese and start it with `java -jar <release jar file>`. 
+Download a relese and start it with `java -jar <release jar file>`.
 Then you are ready to connect to it. You can optionally pass in a port number to use instead of 3344.
 
 You can also run this via Clojure cli tools: `clojure -M:run`
 
 ## Bindings
 
-Language bindings that use pows: 
-- [pharo-Pows](https://github.com/tatut/pharo-Pows) for Pharo Smalltalk 
+Language bindings that use pows:
+- [pharo-Pows](https://github.com/tatut/pharo-Pows) for Pharo Smalltalk
 
 
 ## Commands
@@ -47,7 +47,7 @@ for available commands and methods (not everything is implemented).
 
 For 0-arity calls you can pass any value, it is ignored (for now), eg. `{"locator":"button","click":1}`.
 For 1-arity calls the value is used as the sole argument, eg. `{"locator":"input","fill":"type something"}`.
-For higher arities the value is an array of argumentsm eg, `{"locator":".myfoo","hasAttribute":["data-baz","420"]}`.
+For higher arities the value is an array of arguments eg, `{"locator":".myfoo","hasAttribute":["data-baz","420"]}`.
 
 Navigation is done with the `{"go": "http://...some url.."}` command. You can also
 include `"options"` object that may have a `"timeout"` (milliseconds, defaults to 10000)
