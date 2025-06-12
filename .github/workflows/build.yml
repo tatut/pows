@@ -32,3 +32,4 @@ jobs:
           files: target/pows-standalone.jar
           name: ${{ steps.relname.outputs.relname }}
           tag_name: ${{ steps.relname.outputs.relname }}
+          token: ${{ secrets.RELEASE_TOKEN }}
